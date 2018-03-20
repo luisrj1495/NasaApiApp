@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
-import { Link } from "react-router-dom"
+import { NavLink } from 'react-router-dom'
+import nasaLogo from './nasaLogo.png';
 
 export default class Menu extends Component{
 
@@ -7,21 +8,17 @@ export default class Menu extends Component{
 		return(
 			<header>
 				  <nav>
-				    <div className="nav-wrapper">
-				      <a href="#" className="brand-logo right">Logo</a>
+				    <div className="nav-wrapper blue darken-1">
+				      <a href="#" className="brand-logo right"><img alt="logo" src={nasaLogo} /></a>
 				      <ul id="nav-mobile" className="left hide-on-med-and-down">
-				        {this.props.valores.map((value,index)=>{
-				        	return( <li><a href="sass.html">{value}</a></li>)
+				        {this.props.data.map((value,index)=>{
+				        	return(<li key={index}><NavLink to={value.url}>{value.nombre}</NavLink></li>)
 				        })}
-
-				        <li><Link to="/">Inicio</Link></li>
-				        <li><Link to="/asteroides">Asteroides</Link></li>
-				        <li><Link to="/fotos">Fotos</Link></li>
 				      </ul>
 				    </div>
 				  </nav>
-
 			</header>
+
 
 			)
 	}
