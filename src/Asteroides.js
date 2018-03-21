@@ -13,11 +13,11 @@ export default class Asteroides extends Component{
 	componentWillMount() {
 	    fetch('https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=YFvShd9ALvyxYJp0PUahWW1izCcfm6mI3bYWMtXT')
 	      .then((response) => {
-					console.log(response);
+
 	        return response.json()
 	      })
 	      .then((nearAsteroides) => {
-					console.log(nearAsteroides);
+
 	        this.setState({ imagenesNasa: nearAsteroides,loading:false })
 	      })
 
@@ -25,14 +25,9 @@ export default class Asteroides extends Component{
 
 	render(){
 		const {imagenesNasa, loading}=this.state
-		if (!loading) {
-				console.log(imagenesNasa.near_earth_objects["0"].name)
-		}
 		return(
 			<div>
-				{!loading ? <TablaAsteroides/>: 'loading' }
-
-
+				{!loading ? <TablaAsteroides datos={imagenesNasa.near_earth_objects}/>: 'loading' }
 			</div>
 
 
