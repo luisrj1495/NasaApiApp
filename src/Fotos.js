@@ -83,15 +83,14 @@ export default class Fotos extends Component{
 							 </div>
 						 </div>
 				   </div>
-					):(
+				 ): Object.keys(newImageInfo).length === 0?<div><ImagenDia url={imagenesNasa.url} nombreImagen={imagenesNasa.title} onClick={()=>{this.saveImage}}/></div>  :(
 						<div>
-						<ImagenDia url={imagenesNasa.url} nombreImagen={imagenesNasa.title} onClick={()=>{this.saveImage}}/>
-						<input type="date" onChange={this.getValue}/>
+
 						<NuevaImagen url={newImageInfo.url} nameImage={newImageInfo.title} />
 					</div>
 					)
 				}
-
+<input type="date" onChange={this.getValue}/>
 </div>
 
 
