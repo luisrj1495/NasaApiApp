@@ -26,8 +26,24 @@ export default class Asteroides extends Component{
 	render(){
 		const {imagenesNasa, loading}=this.state
 		return(
-			<div>
-				{!loading ? <TablaAsteroides datos={imagenesNasa.near_earth_objects}/>: 'loading' }
+			<div className="container">
+				{!loading ? <TablaAsteroides datos={imagenesNasa.near_earth_objects}/>: (
+				
+				<div className="row center-align">
+				<div className="preloader-wrapper big active center-align">
+						 <div className="spinner-layer spinner-blue">
+							 <div className="circle-clipper left">
+								 <div className="circle"></div>
+							 </div><div className="gap-patch">
+								 <div className="circle"></div>
+							 </div><div className="circle-clipper right">
+								 <div className="circle"></div>
+							 </div>
+						 </div>
+				   </div>
+				</div>
+				   ) }
+			
 			</div>
 
 

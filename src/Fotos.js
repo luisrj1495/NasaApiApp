@@ -1,7 +1,6 @@
 import React,{Component} from 'react'
-import ImagenDia from './ImagenDia'
+import VideoNasa from './VideoNasa'
 import NuevaImagen from './NuevaImagen'
-
 
 
 
@@ -9,32 +8,16 @@ export default class Fotos extends Component{
 	constructor(){
 		super()
 		this.state={
-			imagenesNasa:{},
 			loading:true,
 			newImageInfo:{}
 		}
+
 		this.getValue=this.getValue.bind(this)
-		this.updateApiWithNewDate=this.updateApiWithNewDate.bind(this)
-		this.saveImage=this.saveImage.bind(this)
 	}
 
 
-	componentWillMount() {
-	    fetch('https://api.nasa.gov/planetary/apod?api_key=YFvShd9ALvyxYJp0PUahWW1izCcfm6mI3bYWMtXT')
-	      .then((response) => {
-	        return response.json()
-	      })
-	      .then((APODNasa) => {
-					// console.log(APODNasa);
-	        this.setState({ imagenesNasa: APODNasa,loading:false })
-	      })
-
-
-
-	  }
-
-		updateApiWithNewDate(newDate){
-			console.log(`https://api.nasa.gov/planetary/apod?date=${newDate}&api_key=YFvShd9ALvyxYJp0PUahWW1izCcfm6mI3bYWMtXT`);
+		componentWillMount (newDate=''){
+			
 			fetch(`https://api.nasa.gov/planetary/apod?date=${newDate}&api_key=YFvShd9ALvyxYJp0PUahWW1izCcfm6mI3bYWMtXT`)
 				.then((response) => {
 					return response.json()
@@ -49,29 +32,21 @@ export default class Fotos extends Component{
 		}
 
 		getValue (event){
-			console.log(event)
 			let newDate=event.target.value
-			this.updateApiWithNewDate(newDate)
-		}
-
-		saveImage(event){
-			img = event.url;
-			console.log(event.url);
-			window.newW = open (img);
-			newW.document.execCommand("SaveAs")
-			newW.close()
+			this.componentWillMount(newDate)
 		}
 
 
 	render(){
-		const {imagenesNasa,newImageInfo,loading}=this.state
 
+		const {newImageInfo,loading}=this.state
 
 		return(
 
-	<div>
+	<div className="container">
 				{
 					loading ? (
+					<div className="row center-align">
 						<div className="preloader-wrapper big active center-align">
 						 <div className="spinner-layer spinner-blue">
 							 <div className="circle-clipper left">
@@ -82,15 +57,28 @@ export default class Fotos extends Component{
 								 <div className="circle"></div>
 							 </div>
 						 </div>
-				   </div>
-				 ): Object.keys(newImageInfo).length === 0?<div><ImagenDia url={imagenesNasa.url} nombreImagen={imagenesNasa.title} onClick={()=>{this.saveImage}}/></div>  :(
-						<div>
-
+				   		</div>
+				   	</div>
+				 ): 
+				newImageInfo.media_type!=='image' ? (
+					<div>
+						<VideoNasa url={newImageInfo.url} videoName={newImageInfo.title} />
+					</div>  ):
+					(<div>
 						<NuevaImagen url={newImageInfo.url} nameImage={newImageInfo.title} />
-					</div>
-					)
+						
+					</div>)
 				}
-<input type="date" onChange={this.getValue}/>
+
+				<div className="row">
+					<h5>Seleccione una fecha diferente</h5>
+
+					<div className="col s4">
+						<input type="date" onChange={this.getValue}/>
+					</div>
+				</div>
+
+			
 </div>
 
 

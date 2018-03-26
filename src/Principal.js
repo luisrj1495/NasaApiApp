@@ -7,8 +7,8 @@ export default class Principal extends Component{
 		super()
 		this.state={
 			valMenu:[{nombre:'Inicio',url:'/'},
-							{nombre:'Asteroides',url:'/asteroides'},
-							{nombre:'Fotos',url:'/fotos'}]
+					{nombre:'Asteroides',url:'/asteroides'},
+					{nombre:'Fotos',url:'/fotos'}]
 		}
 	}
 

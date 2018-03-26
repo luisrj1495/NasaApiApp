@@ -6,13 +6,17 @@
     "react-scripts": "0.2.3"
   },
   "dependencies": {
+    "material-ui": "^1.0.0-beta.38",
+    "material-ui-pickers": "^1.0.0-rc.3",
     "materialize-css": "^0.100.2",
     "mobx": "^2.5.0",
     "mobx-react": "^3.5.5",
     "mobx-react-devtools": "^4.2.5",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
-    "react-router-dom": "^4.2.2"
+    "react-facebook": "^4.2.1",
+    "react-router-dom": "^4.2.2",
+    "react-share": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
