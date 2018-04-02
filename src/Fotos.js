@@ -13,11 +13,17 @@ export default class Fotos extends Component{
 		}
 
 		this.getValue=this.getValue.bind(this)
+		this.getNewDate=this.getNewDate.bind(this)
 	}
 
 
-		componentWillMount (newDate=''){
-			
+		componentWillMount (){
+			this.getNewDate("")
+
+
+		}
+
+		getNewDate(newDate){
 			fetch(`https://api.nasa.gov/planetary/apod?date=${newDate}&api_key=YFvShd9ALvyxYJp0PUahWW1izCcfm6mI3bYWMtXT`)
 				.then((response) => {
 					return response.json()
@@ -27,13 +33,11 @@ export default class Fotos extends Component{
 					this.setState({ newImageInfo: APODNasaNew, loading:false })
 
 				})
-
-
 		}
 
 		getValue (event){
 			let newDate=event.target.value
-			this.componentWillMount(newDate)
+			this.getNewDate(newDate)
 		}
 
 
@@ -59,14 +63,14 @@ export default class Fotos extends Component{
 						 </div>
 				   		</div>
 				   	</div>
-				 ): 
+				 ):
 				newImageInfo.media_type!=='image' ? (
 					<div>
 						<VideoNasa url={newImageInfo.url} videoName={newImageInfo.title} />
 					</div>  ):
 					(<div>
 						<NuevaImagen url={newImageInfo.url} nameImage={newImageInfo.title} />
-						
+
 					</div>)
 				}
 
@@ -78,7 +82,7 @@ export default class Fotos extends Component{
 					</div>
 				</div>
 
-			
+
 </div>
 
 
